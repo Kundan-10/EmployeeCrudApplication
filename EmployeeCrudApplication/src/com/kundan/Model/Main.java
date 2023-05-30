@@ -61,18 +61,11 @@ public class Main {
 				System.out.println("Invalid Choice. Choose Correct choice");
 			}
 			
-			
-			
-			
-			
 		} while (choice !=6);
         
 		scanner.close();
-		
-
 	}
 
-	
 	
 	private static void displayEmployee() {
 		
@@ -87,9 +80,7 @@ public class Main {
 			System.out.println(employee);
 		}
  		
-		
 	}
-	
 	
 	private static void createEmployee() {
 		
@@ -99,19 +90,19 @@ public class Main {
 			String name=scanner.next();
 		
 		System.out.println("Enter Gender:");
-		String gender=scanner.next();
+		String gender=validateGenderInput();
 		
 		
 		
 	    System.out.println("Enter Email:");
-	    String email=scanner.next();
+	    String email=validateEmailInput();
 		
 		System.out.println("Enter DateOfBirth:");
-	    String dateofBirth=scanner.next();
+	    String dateofBirth=validateDateOfBirthInput();
 		
 	
 	    System.out.println("Enter Phone:");
-	    String phone=scanner.next();
+	    String phone=validatePhoneInput();
 	    
 	
 	    
@@ -123,7 +114,6 @@ public class Main {
 		
 	}
 	
-
 	private static void updateEmployee() {
 		
 		System.out.println("Enter  phone of the employee to update");
@@ -141,20 +131,20 @@ public class Main {
 				employee.setName(name);
 			
 				System.out.println("Enter Gender:");
-				String gender=scanner.next();
+				String gender=validateGenderInput();
 				employee.setGender(gender);
 			
 			    System.out.println("Enter Email:");
-			    String email=scanner.next();
+			    String email=validateEmailInput();
 			    employee.setEmail(email);
 			
 				System.out.println("Enter DateOfBirth:");
-			    String dateofBirth=scanner.next();
+			    String dateofBirth=validateDateOfBirthInput();
 			    employee.setDateofbirth(dateofBirth);
 			
 			
 			    System.out.println("Enter Phone:");
-			    String phone=scanner.next();
+			    String phone=validatePhoneInput();
 			    employee.setPhone(phoneUpdate);
 		    
 			    System.out.println("Employee updated succesfully.");
@@ -170,8 +160,6 @@ public class Main {
 		
 	}
 	
-	
-
 	private static void deleteEmployee() {
 		
 		if(employees.isEmpty()) {
@@ -180,7 +168,7 @@ public class Main {
 		}
 		
 		System.out.println("Enter the phone of the employee to delete");
-		String phone=scanner.next();
+		String phone=validatePhoneInput();
 		
 		boolean delete=false;
 		
@@ -199,9 +187,6 @@ public class Main {
 		}
 
 	}
-	
-	
-
 	
 	private static void sortEmployee() {
 		if(employees.isEmpty()) {
@@ -235,6 +220,10 @@ public class Main {
 
 }
 	
+	
+	
+	
+//	validation for valid input 
 	private static int getIntInput() {
 		
 	    int input;
@@ -254,5 +243,64 @@ public class Main {
 
 	}
 	
+	
+//	gender validations 
+	private static String validateGenderInput() {
+	    String input;
+	    while (true) {
+	        input = scanner.next();
+	        if (input.equalsIgnoreCase("male") || input.equalsIgnoreCase("female")) {
+	            break;
+	        } else {
+	            System.out.println("Invalid input. Please enter 'Male' or 'Female':");
+	        }
+	    }
+	    return input;
+	}
+	
+	
+//	validation for email
+	private static String validateEmailInput() {
+	    String input;
+	    while (true) {
+	        input = scanner.next();
+	        if (input.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+	            break;
+	        } else {
+	            System.out.println("Invalid input. Please enter a valid email address:");
+	        }
+	    }
+	    return input;
+	}
+	
+//	validation for dateofbirth
+	private static String validateDateOfBirthInput() {
+	    String input;
+	    while (true) {
+	        input = scanner.next();
+	        if (input.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
+	            break;
+	        } else {
+	            System.out.println("Invalid input. Please enter date of birth in the format 'dd-mm-yyyy':");
+	        }
+	    }
+	    return input;
+	}
 
+	
+//	validation for phonenumber
+	private static String validatePhoneInput() {
+	    String input;
+	    while (true) {
+	        input = scanner.next();
+	        if (input.matches("^\\d{10}$")) {
+	            break;
+	        } else {
+	            System.out.println("Invalid input. Please enter a 10-digit phone number:");
+	        }
+	    }
+	    return input;
+	}
 }
+
+
