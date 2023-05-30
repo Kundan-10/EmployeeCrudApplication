@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.kundan.sort.SortUsingName;
+import com.kundan.sort.SortUsingemail;
 
 public class Main {
 	
@@ -87,7 +88,7 @@ public class Main {
 		System.out.println("CREATE Employee:");
 		
 	    System.out.println("Enter  Name:");
-			String name=scanner.next();
+			String name=validateStringInput();
 		
 		System.out.println("Enter Gender:");
 		String gender=validateGenderInput();
@@ -117,7 +118,7 @@ public class Main {
 	private static void updateEmployee() {
 		
 		System.out.println("Enter  phone of the employee to update");
-		String phoneUpdate=scanner.next();
+		String phoneUpdate=validatePhoneInput();
 		
 		boolean match=false;
 		
@@ -127,7 +128,7 @@ public class Main {
 				
 				
 			    System.out.println("Enter  Name:");
-				String name=scanner.next();
+				String name=validateStringInput();
 				employee.setName(name);
 			
 				System.out.println("Enter Gender:");
@@ -214,7 +215,16 @@ public class Main {
 			}
 			System.out.println("Employee sort by Name successfully.");
 			break;
-	
+	    
+			
+		case 2:
+		Collections.sort(employees,new SortUsingemail());
+			
+			for(Employee emp:employees) {
+				System.out.println(emp.toString());
+			}
+			System.out.println("Employee sort by Email successfully.");
+			break;
 		
 	}
 
@@ -287,7 +297,18 @@ public class Main {
 	    return input;
 	}
 
-	
+	private static String validateStringInput() {
+	    String input;
+	    while (true) {
+	        input = scanner.next();
+	        if (input.matches("^[a-zA-Z\\s]+$")) {
+	            break;
+	        } else {
+	            System.out.println("Invalid input. Please enter a valid string:");
+	        }
+	    }
+	    return input;
+	}
 //	validation for phonenumber
 	private static String validatePhoneInput() {
 	    String input;
